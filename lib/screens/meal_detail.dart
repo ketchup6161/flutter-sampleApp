@@ -4,6 +4,12 @@ import '../dummy_data.dart';
 
 class MealDetailScreen extends StatelessWidget {
   static const routeName = '/meal-detail';
+
+  final Function toggleFavorite;
+  final Function isFavorite;
+
+  MealDetailScreen(this.toggleFavorite, this.isFavorite);
+
   @override
   Widget build(BuildContext context) {
     final mealId = ModalRoute.of(context).settings.arguments as String;
@@ -37,12 +43,12 @@ class MealDetailScreen extends StatelessWidget {
                 border: Border.all(
                   color: Colors.grey,
                 ),
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(5),
               ),
               margin: EdgeInsets.all(10),
               padding: EdgeInsets.all(10),
               height: 200,
-              width: 330,
+              width: 360,
               child: ListView.builder(
                 itemBuilder: (ctx, index) => Card(
                   color: Theme.of(context).accentColor,
@@ -70,12 +76,12 @@ class MealDetailScreen extends StatelessWidget {
                 border: Border.all(
                   color: Colors.grey,
                 ),
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(5),
               ),
               margin: EdgeInsets.all(10),
               padding: EdgeInsets.all(10),
               height: 200,
-              width: 330,
+              width: 360,
               child: ListView.builder(
                 itemBuilder: (ctx, index) => Column(
                   children: [
@@ -101,13 +107,19 @@ class MealDetailScreen extends StatelessWidget {
           ],
         ),
       ),
+      // floatingActionButton: FloatingActionButton(
+      //   child: Icon(
+      //     Icons.delete,
+      //   ),
+      //   onPressed: () {
+      //     Navigator.of(context).pop(mealId);
+      //   },
+      // ),
       floatingActionButton: FloatingActionButton(
         child: Icon(
-          Icons.delete,
+          isFavorite(mealId) ? Icons.star : Icons.star_border,
         ),
-        onPressed: () {
-          Navigator.of(context).pop(mealId);
-        },
+        onPressed: () => toggleFavorite(mealId),
       ),
     );
   }

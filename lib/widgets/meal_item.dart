@@ -10,7 +10,7 @@ class MealItem extends StatelessWidget {
   final int duration;
   final Complexity complexity;
   final Affordability affordability;
-  final Function removeItem;
+  // final Function removeItem;
 
   MealItem({
     @required this.id,
@@ -19,7 +19,7 @@ class MealItem extends StatelessWidget {
     @required this.duration,
     @required this.complexity,
     @required this.affordability,
-    @required this.removeItem,
+    // @required this.removeItem,
   });
 
   String get complexityText {
@@ -62,7 +62,7 @@ class MealItem extends StatelessWidget {
         )
         .then(
           (result) => {
-            if (result != null) {removeItem(result)}
+            // if (result != null) {removeItem(result)}
           },
         );
   }
@@ -73,7 +73,7 @@ class MealItem extends StatelessWidget {
       onTap: () => selectMeal(context),
       child: Card(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(5),
         ),
         elevation: 4,
         margin: EdgeInsets.all(10),
@@ -83,8 +83,8 @@ class MealItem extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(15),
-                    topRight: Radius.circular(15),
+                    topLeft: Radius.circular(5),
+                    topRight: Radius.circular(5),
                   ),
                   child: Image.network(
                     imageUrl,
@@ -94,15 +94,20 @@ class MealItem extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  bottom: 20,
+                  bottom: 0,
                   right: 0,
                   child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(5),
+                      ),
+                      color: Colors.black54,
+                    ),
                     width: 250,
                     padding: EdgeInsets.symmetric(
                       vertical: 5,
                       horizontal: 20,
                     ),
-                    color: Colors.black54,
                     child: Text(
                       title,
                       style: TextStyle(
